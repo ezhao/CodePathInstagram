@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Popular</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="placeholder_username">instagramuser</string>
+    <string name="default_likes">♥ 12,345 likes</string>
+    <string name="placeholder_likes">♥ %s likes</string>
+    <string name="placeholder_caption">A caption for the photo above.</string>
+    <string name="placeholder_comments">A caption for the photo above.</string>
+    <string name="placeholder_relative_created_time">2 days ago</string>
+    <string name="view_more_comments_default">see all n comments</string>
+    <string name="view_more_comments_placeholder">see all %d comments</string>
+
+</resources>
