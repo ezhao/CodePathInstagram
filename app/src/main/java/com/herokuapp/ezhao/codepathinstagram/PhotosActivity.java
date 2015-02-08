@@ -1,5 +1,6 @@
 package com.herokuapp.ezhao.codepathinstagram;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +20,11 @@ import java.util.ArrayList;
 
 
 public class PhotosActivity extends ActionBarActivity {
+    private static final String CLIENT_ID = "7a59905f20f5494fa997a4b0a7f47708";
+
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter photosAdapter;
-    private static final String CLIENT_ID = "7a59905f20f5494fa997a4b0a7f47708";
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,20 @@ public class PhotosActivity extends ActionBarActivity {
 
         // Fetch the popular photos
         fetchPopularPhotos();
+
+        // Swipe container business
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                photos.clear();
+                fetchPopularPhotos();
+            }
+        });
+        swipeContainer.setColorSchemeResources(
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     private void fetchPopularPhotos() {
@@ -84,6 +101,7 @@ public class PhotosActivity extends ActionBarActivity {
 
                 // Update our adapter
                 photosAdapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
